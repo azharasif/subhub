@@ -8,8 +8,7 @@ public/userImages
 public/checkInImages
 credentials.txt
 .env
-database.json
-db.js
+
 migrations
 tests
 latest_w model.mwb
