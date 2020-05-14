@@ -1,0 +1,13 @@
+Gender:
+Male=>1
+Female=>2
+
+iTrain:
+3+ times a week=>1
+Rarely/Never=>2
+
+Phase:
+1=>1
+2=>2
+3=>3
+4=>4

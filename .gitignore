@@ -1,0 +1,16 @@
+node_modules/
+fitnessAppDev.rar
+images/1/
+images/2/
+toDoList.txt
+public/images
+public/userImages
+public/checkInImages
+credentials.txt
+.env
+database.json
+db.js
+migrations
+tests
+latest_w model.mwb
+latest_w model.mwb.bak
