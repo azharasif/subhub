@@ -1,5 +1,0 @@
-DB_HOST=demo-dme.cmktk0dm9q8s.us-east-1.rds.amazonaws.com
-DB_USER=fitnessapp_user
-DB_PASS=D8*@^YHJKJGF
-DB_PORT=1155
-DB="FitnessApp DB"
