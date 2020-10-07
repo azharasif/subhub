@@ -8,8 +8,7 @@ const con = require('../db');
 
 const userSchema = Joi.object().keys({
   email: Joi.string().required(),
-  password: Joi.string().required(),
-  offset: Joi.number().integer()
+  password: Joi.string().required()
 });
 
 
@@ -30,21 +29,21 @@ router.post('/', async function (req, res, next) {
               const response = {
                 "token": token
               }
-              let previousTokenIds = await functions.runQuery(`Select id from authtoken where userid = ${user[0].id}`);
-              let previousUserIds = "";
-              for(let i = 0; i < previousTokenIds.length; i++){
-                previousUserIds+=(previousTokenIds[i].id+",");
-              }
-              if(previousUserIds.length){
-                previousUserIds = previousUserIds.slice(0, -1);
-                console.log(`Update authtoken set enddate = CURRENT_TIMESTAMP where id in (${previousUserIds})`)
-                await functions.runQuery(`Update authtoken set enddate = CURRENT_TIMESTAMP where id in (${previousUserIds})`)
-              }
+              // let previousTokenIds = await functions.runQuery(`Select id from authtoken where userid = ${user[0].id}`);
+              // let previousUserIds = "";
+              // for(let i = 0; i < previousTokenIds.length; i++){
+              //   previousUserIds+=(previousTokenIds[i].id+",");
+              // }
+              // if(previousUserIds.length){
+              //   previousUserIds = previousUserIds.slice(0, -1);
+              //   console.log(`Update authtoken set enddate = CURRENT_TIMESTAMP where id in (${previousUserIds})`)
+              //   await functions.runQuery(`Update authtoken set enddate = CURRENT_TIMESTAMP where id in (${previousUserIds})`)
+              // }
               let query = `Insert into authtoken (token , userid, startdate, enddate) values("${response.token}" ,${user[0].id},
               CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP,  INTERVAL 12 DAY))`;
               await functions.runQuery(query);
-              query = `Update user set offset = ${req.body.offset} where id = ${user[0].id}`;
-              await functions.runQuery(query);
+              // query = `Update user set offset = ${req.body.offset} where id = ${user[0].id}`;
+              // await functions.runQuery(query);
                 con.commit();
                 res.send({ statusCode: 200, data: response , message:"logged in" });
               }
