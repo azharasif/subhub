@@ -7,7 +7,7 @@ const functions = require('../middleware/functions')
 const con = require('../db');
 
 const userSchema = Joi.object().keys({
-  email: Joi.string().required(),
+  email: Joi.string().required().email(),
   password: Joi.string().required()
 });
 
@@ -55,12 +55,14 @@ router.post('/', async function (req, res, next) {
           res.send({ statusCode: 405, message: validated.error.message })
         }
       } catch (err) {
-        con.rollback();
-        // if (err.code == 'ER_DUP_ENTRY') res.send({ statusCode: 405, message: "You have already devicetoken against this device" });
-        // else {
-        res.send({ statusCode: 405, message: err.message })
-        // }
+        connection.rollback();
+        if(err.code == 'ER_DUP_ENTRY'){
+          res.send({statusCode: 405, message: 'Email already registered'});
+        } else {
+          res.send({statusCode: 405, message: err.message});
+        }
       }
+
     })
   } catch (err) {
     con.rollback();

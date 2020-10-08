@@ -8,7 +8,6 @@ const userSchema = Joi.object().keys({
   oldpassword: Joi.string().required(),
   newpassword: Joi.string().required(), 
   userid: Joi.number().integer().required(),
-  offset: Joi.number().integer(),
   issuperadmin: Joi.boolean()
 });
 router.post('/', async (req, res) => {
@@ -26,7 +25,7 @@ router.post('/', async (req, res) => {
           res.send({ statusCode: 200, message: "Password updated" });
         }
       } else {
-        res.send({ statusCode: 405, message: "Pasword not found" });
+        res.send({ statusCode: 405, message: "invalid acount details" });
       }
 
     } else {
