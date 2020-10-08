@@ -7,7 +7,7 @@ public/images
 public/userImages
 public/checkInImages
 credentials.txt
-
+.env
 
 migrations
 tests
