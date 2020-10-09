@@ -9,7 +9,7 @@ const userSchema = Joi.object().keys({
   userid: Joi.number().integer().required(),
   issuperadmin: Joi.boolean()
 });
-router.post('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
