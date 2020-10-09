@@ -18,6 +18,8 @@ const changePassword = require('./routes/changePassword')
 const forgotPassword = require('./routes/forgotPassword');
 const getsub = require('./routes/getSub')
 const editUserProfile = require('./routes/editUserProfile')
+const adminLogin = require('./routes/adminLogin')
+
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +42,7 @@ app.use('/userLogin', userLogin);
 app.use('/userSignup', userSignup);
 app.use('/verifyCode', verifyCode);
 app.use('/editUserProfile'  , VerifyTokenMiddleware.validJwt , editUserProfile )
-
+app.use('/adminLogin' , adminLogin)
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
