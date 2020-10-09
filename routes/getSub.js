@@ -17,7 +17,7 @@ const Schema = Joi.object().keys({
 
 router.post('/' , async  function (req, res) {
     try{
-        let validated = userSchema.validate(req.body, { abortEarly: false });
+        let validated = Schema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
 
                  let  query = (`Select * from jobs where  subname like concat('%',"${req.body.subname}", '%')   or 
