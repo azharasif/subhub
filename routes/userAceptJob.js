@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   try {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
-        var query = `update jobs set jobid = ${req.body.jobid}  where id = ${req.body.userid}`
+        var query = `update user set jobid = ${req.body.jobid}  where id = ${req.body.userid}`
       let user = await functions.runQuery(query);
       console.log(query)
       
