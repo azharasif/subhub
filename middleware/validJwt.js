@@ -17,9 +17,9 @@ exports.validJwt = async (req , res  , next)=>{
     if(queryResults.length){
       if(!queryResults[0].issuperadmin){
         let tokenEndDate = new Date(queryResults[0].enddate);
-        await tokenEndDate.setMinutes(tokenEndDate.getMinutes() - new Date().getTimezoneOffset() - (new Date().getTimezoneOffset()-queryResults[0].offset));
+        await tokenEndDate.setMinutes(tokenEndDate.getMinutes() - new Date().getTimezoneOffset());
         let currentDate = new Date();
-        await currentDate.setMinutes(currentDate.getMinutes() - new Date().getTimezoneOffset() - (new Date().getTimezoneOffset()-queryResults[0].offset));
+        await currentDate.setMinutes(currentDate.getMinutes() - new Date().getTimezoneOffset());
         if(tokenEndDate > currentDate){
           req.body.userid = queryResults[0].userid;
   
@@ -46,9 +46,9 @@ exports.adminJwt = async (req , res  , next)=>{
     let queryResults =  await functions.runQuery(query);
     if(queryResults.length&&queryResults[0].issuperadmin){
       let tokenEndDate = new Date(queryResults[0].enddate);
-      await tokenEndDate.setMinutes(tokenEndDate.getMinutes() - new Date().getTimezoneOffset() - (new Date().getTimezoneOffset()-queryResults[0].offset));
+      await tokenEndDate.setMinutes(tokenEndDate.getMinutes() - new Date().getTimezoneOffset() );
       let currentDate = new Date();
-      await currentDate.setMinutes(currentDate.getMinutes() - new Date().getTimezoneOffset() - (new Date().getTimezoneOffset()-queryResults[0].offset));
+      await currentDate.setMinutes(currentDate.getMinutes() - new Date().getTimezoneOffset());
       if(tokenEndDate > currentDate){
         if(!req.body.userFor){
           req.body.userid = queryResults[0].userid;
