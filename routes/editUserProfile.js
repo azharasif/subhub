@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
       let query = ` update user set fullname = "${req.body.fullname}" ,  phone = "${req.body.phone}" , city = "${req.body.city}"  where id = ${req.body.userid}  `;
       console.log(query)
       let result = await functions.runQuery(query)
-      connection.commit();
+      
       res.send({ statusCode: 200, message: "Profile updated  sucessfully " });
 
     }
