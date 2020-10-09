@@ -22,7 +22,7 @@ exports.validJwt = async (req , res  , next)=>{
         await currentDate.setMinutes(currentDate.getMinutes() - new Date().getTimezoneOffset() - (new Date().getTimezoneOffset()-queryResults[0].offset));
         if(tokenEndDate > currentDate){
           req.body.userid = queryResults[0].userid;
-          req.body.offset = queryResults[0].offset;
+  
           next();
         } else {
           await functions.runQuery(`Delete from authtoken where id = ${queryResults[0].tokenid}`);
@@ -52,12 +52,10 @@ exports.adminJwt = async (req , res  , next)=>{
       if(tokenEndDate > currentDate){
         if(!req.body.userFor){
           req.body.userid = queryResults[0].userid;
-          req.body.offset = 0;
           req.body.issuperadmin = true;
           next();
         } else{
           req.body.userid = req.body.userFor;
-          req.body.offset = 0;
           req.body.issuperadmin = false;
           next();
         }
