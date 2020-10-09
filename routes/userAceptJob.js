@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
   try {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
-      let user = await functions.runQuery(`insert into user  (jobid) values (${req.body.jobid})  where id = ${req.body.user} `);
+      let user = await functions.runQuery(`insert into user  (jobid) values (${req.body.jobid})  where id = ${req.body.userid} `);
         res.send({statusCode:200 , message: "job added"})
 
     } else {
