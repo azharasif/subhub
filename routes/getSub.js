@@ -21,7 +21,7 @@ router.post('/' , async  function (req, res) {
     // if (!validated.error) {
 
                  let  query = (`Select *  , max(distance) from jobs where  subname like concat('%',"${req.body.subname}", '%')   or
-                  rating = "${req.body.rating}"  or   distance  = "${req.body.distance}" or price =  "${req.body.price}" or 
+                  rating = "${req.body.rating}"   or price =  "${req.body.price}" or 
                   lng = "${req.body.lng}" or lat =" ${req.body.lat}"`);
                   console.log(query)
                  let result =  await functions.runQuery(query);
