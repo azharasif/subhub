@@ -9,7 +9,7 @@ const con = require('../db');
 router.get('/' , async  function (req, res) {
     try{
         
-                 let  query = (`select  postby , subname , rating , distance , price , profile  from subname`);
+                 let  query = (`select  *  from jobs`);
                  let result =  await functions.runQuery(query);
                  res.send({statusCode:200, data:result})
     }

@@ -21,6 +21,8 @@ const editUserProfile = require('./routes/editUserProfile')
 const getUserdata = require('./routes/getuserdata')
 const adminLogin = require('./routes/adminLogin')
 const onacceptJob = require('./routes/userAceptJob')
+const addNewjobAdmin = require('./routes/addJobByAdmin')
+
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -38,7 +40,7 @@ app.use('/changePassword', VerifyTokenMiddleware.validJwt, changePassword);
 app.use('/forgotPassword', forgotPassword);
 app.use('/logout', VerifyTokenMiddleware.validJwt, logout);
 app.use('/resetPassword', resetPassword);
-app.use('/getsub' ,  getsub)
+app.use('/getsub' , VerifyTokenMiddleware.validJwt , getsub)
 app.use('/userLogin', userLogin);
 app.use('/userSignup', userSignup);
 app.use('/verifyCode', verifyCode);
@@ -46,7 +48,7 @@ app.use('/editUserProfile'  , VerifyTokenMiddleware.validJwt , editUserProfile )
 app.use('/getUserdata' , VerifyTokenMiddleware.validJwt , getUserdata)
 app.use('/adminLogin' , adminLogin)
 app.use('/onacceptJob' , VerifyTokenMiddleware.validJwt , onacceptJob)
-
+app.use('/addNewjobAdmin' , VerifyTokenMiddleware.adminJwt , addNewjobAdmin)
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
