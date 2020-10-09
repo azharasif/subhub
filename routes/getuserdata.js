@@ -6,11 +6,11 @@ const functions = require('../middleware/functions')
 
 const userSchema = Joi.object().keys({
 
-  userid: Joi.number().integer().required(),
-  issuperadmin: Joi.boolean()
+  userid: Joi.number().integer().required()
 });
 router.get('/', async (req, res) => {
   try {
+      console.log("get user data")
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
       let user = await functions.runQuery(`SELECT *  from user WHERE id = ${req.body.userid}`);
