@@ -20,7 +20,7 @@ router.post('/' , async  function (req, res) {
     //     let validated = Schema.validate(req.body, { abortEarly: false });
     // if (!validated.error) {
 
-                 let  query = (`Select *  , max(distance) , from jobs where  subname like concat('%',"${req.body.subname}", '%')   or
+                 let  query = (`Select *  , max(distance) from jobs where  subname like concat('%',"${req.body.subname}", '%')   or
                   rating = "${req.body.rating}"  or   distance  = "${req.body.distance}" or price =  "${req.body.price}" or 
                   lng = "${req.body.lng}" or lat =" ${req.body.lat}"`);
                   console.log(query)
