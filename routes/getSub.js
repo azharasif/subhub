@@ -20,9 +20,10 @@ router.post('/' , async  function (req, res) {
         let validated = Schema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
 
-                 let  query = (`Select * from jobs where  subname like concat('%',"${req.body.subname}", '%')   or 
-                  rating = ${req.body.rating}  or   distance  = ${req.body.distance} or price =  ${req.body.price} or 
-                  lng =  ${req.body.lng} or lat = ${req.body.lat}`);
+                 let  query = (`Select * from jobs where  subname like concat('%',"${req.body.subname}", '%')   and
+                  rating = ${req.body.rating}  and   distance  = ${req.body.distance} and price =  ${req.body.price} and 
+                  lng =  ${req.body.lng} and lat = ${req.body.lat}`);
+                  console.log(query)
                  let result =  await functions.runQuery(query);
                  res.send({statusCode:200, data:result})
                 }
