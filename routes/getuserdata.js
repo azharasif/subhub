@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
       let user = await functions.runQuery(`SELECT *  from user WHERE id = ${req.body.userid}`);
+      res.send({ statusCode: 200, message: user });
     } else {
       res.send({ statusCode: 405, message: validated.error.message })
     }
