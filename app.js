@@ -20,7 +20,7 @@ const getsub = require('./routes/getSub')
 const editUserProfile = require('./routes/editUserProfile')
 const getUserdata = require('./routes/getuserdata')
 const adminLogin = require('./routes/adminLogin')
-
+const onacceptJob = require('./routes/userAceptJob')
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +45,7 @@ app.use('/verifyCode', verifyCode);
 app.use('/editUserProfile'  , VerifyTokenMiddleware.validJwt , editUserProfile )
 app.use('/getUserdata' , VerifyTokenMiddleware.validJwt , getUserdata)
 app.use('/adminLogin' , adminLogin)
+app.use('/onacceptJob' , VerifyTokenMiddleware.validJwt , onacceptJob)
 
 // error handler
 app.use(function (err, req, res, next) {
