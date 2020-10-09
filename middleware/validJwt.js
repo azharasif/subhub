@@ -10,7 +10,7 @@ exports.validJwt = async (req , res  , next)=>{
   }
   const token =  JSON.stringify(req.headers.authorization)||1234;
   try{
-    let query = `select u.id as userid, u.offset, a.id as tokenid, a.enddate from user u inner join authtoken a on u.id = a.userid where a.token = ${token}`;
+    let query = `select u.id as userid,  a.id as tokenid, a.enddate from user u inner join authtoken a on u.id = a.userid where a.token = ${token}`;
     console.log(query);
     let queryResults =  await functions.runQuery(query);
     console.log(queryResults);
@@ -42,7 +42,7 @@ exports.validJwt = async (req , res  , next)=>{
 exports.adminJwt = async (req , res  , next)=>{
   const token =  JSON.stringify(req.headers.authorization)||1234;
   try{
-    let query = `select u.id as userid, u.issuperadmin, u.offset, a.id as tokenid, a.enddate from user u inner join authtoken a on u.id = a.userid where a.token = ${token}`;
+    let query = `select u.id as userid, u.issuperadmin,  a.id as tokenid, a.enddate from user u inner join authtoken a on u.id = a.userid where a.token = ${token}`;
     let queryResults =  await functions.runQuery(query);
     if(queryResults.length&&queryResults[0].issuperadmin){
       let tokenEndDate = new Date(queryResults[0].enddate);
