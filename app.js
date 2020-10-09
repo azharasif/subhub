@@ -17,7 +17,7 @@ const verifyCode = require('./routes/verifyCode');
 const changePassword = require('./routes/changePassword')
 const forgotPassword = require('./routes/forgotPassword');
 const getsub = require('./routes/getSub')
-
+const editUserProfile = require('./routes/editUserProfile')
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -39,6 +39,7 @@ app.use('/getsub' ,  getsub)
 app.use('/userLogin', userLogin);
 app.use('/userSignup', userSignup);
 app.use('/verifyCode', verifyCode);
+app.use('/editUserProfile'  , VerifyTokenMiddleware.validJwt , editUserProfile )
 
 // error handler
 app.use(function (err, req, res, next) {
