@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha tests/get6stepsTest_c"
+    "test": "mocha tests/get6stepsTest_c",
+    "pm2-start": "pm2 start ./bin/www"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.8",

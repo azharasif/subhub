@@ -27,6 +27,7 @@ router.post('/' , async  function (req, res) {
                  let result =  await functions.runQuery(query);
                  res.send({statusCode:200, data:result})
                 }
+                
                 else {
                     res.send({ statusCode: 405, message: validated.error.message });
                 }
