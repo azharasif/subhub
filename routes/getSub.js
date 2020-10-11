@@ -6,7 +6,7 @@ const router = express.Router();
 const functions = require('../middleware/functions')
 const con = require('../db');
 const Schema = Joi.object().keys({
-    userid: Joi.number().integer().required().allow(""),
+    userid: Joi.number().integer().required(),
     subname: Joi.string().required().allow(""),
     rating: Joi.number().integer().required().allow(""),
     distance: Joi.number().integer().required().allow(""),
