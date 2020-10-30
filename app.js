@@ -27,8 +27,8 @@ const getAlluser = require('./routes/adminpanel/getAllusers')
 
 const  editUserbyadmin = require('./routes/adminpanel/editUser')
 const delUserbyadmin = require('./routes/adminpanel/delUserbyadmin')
-
-
+const addUserbyadmin = require('./routes/adminpanel/addUserbyadmin')
+const  addnewuser = require('./routes/adminpanel/addUserbyadmin')
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -58,7 +58,8 @@ app.use('/addNewjobAdmin' , VerifyTokenMiddleware.adminJwt , addNewjobAdmin)
 
 ///admin
 app.use('/adminLogin' , adminLogin)
-app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser )
+app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser );
+app.use('/addUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,addUserbyadmin );
 app.use('/editUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,editUserbyadmin  )
 app.use('/delUserbyadmin' , VerifyTokenMiddleware.adminJwt , delUserbyadmin)
 // error handler
