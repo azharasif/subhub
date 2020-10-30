@@ -17,7 +17,7 @@ const schema = Joi.object().keys({
 });
 router.post('/', function (req, res) {
 
-  connection.beginTransaction(async function () {
+
     try {
       let validation = schema.validate(req.body, { abortEarly: false });
       if (!validation.error) {
@@ -25,13 +25,13 @@ router.post('/', function (req, res) {
         let query = `Insert into user (fullname, phone, email, password ,city) values("${req.body.fullname}","${req.body.phone}", "${req.body.email}", "${hashedPassword}","${req.body.city}")`;
         console.log(query);
         var result =await functions.runQuery(query)
-        connection.commit();
+        
         res.send({ statusCode: 200, message: "User added by admin " });
       } else {
         res.send({ statusCode: 405, message: validation.error.message });
       }
     } catch (err) {
-      connection.rollback();
+   
       if (err.code == 'ER_DUP_ENTRY') {
         res.send({ statusCode: 405, message: 'Email/mobile No. already registered' });
       } else {
@@ -39,7 +39,7 @@ router.post('/', function (req, res) {
       }
     }
 
-  })
+ 
 
 })
 
