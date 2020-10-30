@@ -22,7 +22,10 @@ const getUserdata = require('./routes/getuserdata')
 const adminLogin = require('./routes/adminLogin')
 const onacceptJob = require('./routes/userAceptJob')
 const addNewjobAdmin = require('./routes/addJobByAdmin')
-const getAlluser = require('./routes/getAllusers')
+const getAlluser = require('./routes/adminpanel/getAllusers')
+
+
+const  editUserbyadmin = require('./routes/adminpanel/editUser')
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -46,10 +49,16 @@ app.use('/userSignup', userSignup);
 app.use('/verifyCode', verifyCode);
 app.use('/editUserProfile'  , VerifyTokenMiddleware.validJwt , editUserProfile )
 app.use('/getUserdata' , VerifyTokenMiddleware.validJwt , getUserdata)
-app.use('/adminLogin' , adminLogin)
+
 app.use('/onacceptJob' , VerifyTokenMiddleware.validJwt , onacceptJob)
 app.use('/addNewjobAdmin' , VerifyTokenMiddleware.adminJwt , addNewjobAdmin)
+
+
+///admin
+app.use('/adminLogin' , adminLogin)
 app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser )
+app.use('/editUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,editUserbyadmin  )
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
