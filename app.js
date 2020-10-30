@@ -31,7 +31,7 @@ const addUserbyadmin = require('./routes/adminpanel/addUserbyadmin')
 const  getAlljobsadmin = require('./routes/adminpanel/getAlljobs')
 const delJobbyadmin = require('./routes/adminpanel/deljobbyadmin')
 const editJobbyadmin = require('./routes/adminpanel/editJobbyadmin')
-
+const assignJobtouser = require('./routes/adminpanel/assignjobtouser')
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -69,6 +69,8 @@ app.use('/delUserbyadmin' , VerifyTokenMiddleware.adminJwt , delUserbyadmin)
 app.use('/getAlljobsadmin' , VerifyTokenMiddleware.adminJwt , getAlljobsadmin)
 app.use('/delJobbyadmin' , VerifyTokenMiddleware.adminJwt , delJobbyadmin)
 app.use('/editJobbyadmin' , VerifyTokenMiddleware.adminJwt ,editJobbyadmin)
+app.use('/assignJobtouser' , VerifyTokenMiddleware.adminJwt ,assignJobtouser)
+
 
 // error handler
 app.use(function (err, req, res, next) {
