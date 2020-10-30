@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 const express = require('express');
 const Joi = require('@hapi/joi');
 const router = express.Router();
-const functions = require('../middleware/functions')
+const functions = require('../../middleware/functions')
 
 const Schema = Joi.object().keys({
   id: Joi.number().integer().required(),
