@@ -8,7 +8,7 @@ const functions = require('../../middleware/functions')
 const Schema = Joi.object().keys({
   userid: Joi.number().integer().required(),
   jobid: Joi.number().integer().required(),
-  userid: Joi.number().integer().required(),
+  id: Joi.number().integer().required(),
   issuperadmin: Joi.boolean()
 });
 router.post('/', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     let validation = Schema.validate(req.body, { abortEarly: false });
     
     if (!validation.error) {
-      let query = ` update user set jobid = ${req.body.jobid}  where id = ${req.body.userid}  `;
+      let query = ` update user set jobid = ${req.body.jobid}  where id = ${req.body.id}  `;
       console.log(query)
       let result = await functions.runQuery(query)
       
