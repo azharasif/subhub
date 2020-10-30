@@ -2,7 +2,7 @@ const mysql = require("mysql"); var bcrypt = require('bcryptjs');
 const express = require('express');
 const Joi = require('@hapi/joi');
 const router = express.Router();
-const functions = require('../middleware/functions')
+const functions = require('../../middleware/functions')
 const connection = require('../db');
 
 const schema = Joi.object().keys({
