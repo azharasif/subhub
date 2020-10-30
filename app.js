@@ -22,7 +22,7 @@ const getUserdata = require('./routes/getuserdata')
 const adminLogin = require('./routes/adminLogin')
 const onacceptJob = require('./routes/userAceptJob')
 const addNewjobAdmin = require('./routes/addJobByAdmin')
-
+const getAlluser = require('./routes/getAllusers')
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +49,7 @@ app.use('/getUserdata' , VerifyTokenMiddleware.validJwt , getUserdata)
 app.use('/adminLogin' , adminLogin)
 app.use('/onacceptJob' , VerifyTokenMiddleware.validJwt , onacceptJob)
 app.use('/addNewjobAdmin' , VerifyTokenMiddleware.adminJwt , addNewjobAdmin)
+app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser )
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
