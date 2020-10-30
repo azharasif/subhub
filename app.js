@@ -29,6 +29,7 @@ const  editUserbyadmin = require('./routes/adminpanel/editUser')
 const delUserbyadmin = require('./routes/adminpanel/delUserbyadmin')
 const addUserbyadmin = require('./routes/adminpanel/addUserbyadmin')
 const  getAlljobsadmin = require('./routes/adminpanel/getAlljobs')
+const delJobbyadmin = require('./routes/adminpanel/deljobbyadmin')
 
 
 var app = express();
@@ -65,6 +66,8 @@ app.use('/addUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,addUserbyadmin );
 app.use('/editUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,editUserbyadmin  )
 app.use('/delUserbyadmin' , VerifyTokenMiddleware.adminJwt , delUserbyadmin)
 app.use('/getAlljobsadmin' , VerifyTokenMiddleware.adminJwt , getAlljobsadmin)
+app.use('/delJobbyadmin' , VerifyTokenMiddleware.adminJwt , delJobbyadmin)
+
 
 // error handler
 app.use(function (err, req, res, next) {

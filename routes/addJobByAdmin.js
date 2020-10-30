@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
         let validated = userSchema.validate(req.body, { abortEarly: false });
         if (!validated.error) {
             console.log(req.body)
-            var query = `insert into jobs  (postby  , subname , rating , distance ,price ,lng ,lat ) values("betty" ,  "${req.body.subname}"  ,${req.body.rating} , ${req.body.distance} , ${req.body.price} ,"${req.body.lng}" ,"${req.body.lat}"  )`
+            var query = `insert into jobs  (postby  , subname , rating , distance ,price ,lng ,lat ) values("admin" ,  "${req.body.subname}"  ,${req.body.rating} , ${req.body.distance} , ${req.body.price} ,"${req.body.lng}" ,"${req.body.lat}"  )`
            console.log(query)
             let user = await functions.runQuery(query);
             res.send({ statusCode: 200, message: "job added by admin" })
