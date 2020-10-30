@@ -6,6 +6,7 @@ const router = express.Router();
 const functions = require('../../middleware/functions')
 
 const Schema = Joi.object().keys({
+  userid: Joi.number().integer().required(),
   id: Joi.number().integer().required(),
   fullname:Joi.string().required().allow(""),
   phone:Joi.string().required().allow(""),
