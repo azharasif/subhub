@@ -6,7 +6,7 @@ const functions = require('../middleware/functions')
 
 const userSchema = Joi.object().keys({
 
-  userid: Joi.number().integer().required()
+    issuperadmin: Joi.number().integer().required()
 });
 router.get('/', async (req, res) => {
   try {
