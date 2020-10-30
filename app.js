@@ -22,13 +22,15 @@ const getUserdata = require('./routes/getuserdata')
 const adminLogin = require('./routes/adminLogin')
 const onacceptJob = require('./routes/userAceptJob')
 const addNewjobAdmin = require('./routes/addJobByAdmin')
+
+
 const getAlluser = require('./routes/adminpanel/getAllusers')
-
-
 const  editUserbyadmin = require('./routes/adminpanel/editUser')
 const delUserbyadmin = require('./routes/adminpanel/delUserbyadmin')
 const addUserbyadmin = require('./routes/adminpanel/addUserbyadmin')
-const  addnewuser = require('./routes/adminpanel/addUserbyadmin')
+const  getAlljobsadmin = require('./routes/adminpanel/getAlljobs')
+
+
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -62,6 +64,8 @@ app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser );
 app.use('/addUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,addUserbyadmin );
 app.use('/editUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,editUserbyadmin  )
 app.use('/delUserbyadmin' , VerifyTokenMiddleware.adminJwt , delUserbyadmin)
+app.use('/getAlljobsadmin' , VerifyTokenMiddleware.adminJwt , getAlljobsadmin)
+
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
