@@ -15,7 +15,7 @@ const schema = Joi.object().keys({
   userid: Joi.number().integer().required(),
 
 });
-router.post('/', function (req, res) {
+router.post('/', async function (req, res) {
 
 
     try {
