@@ -26,6 +26,8 @@ const getAlluser = require('./routes/adminpanel/getAllusers')
 
 
 const  editUserbyadmin = require('./routes/adminpanel/editUser')
+const delUserbyadmin = require('./routes/adminpanel/delUserbyadmin')
+
 
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -58,7 +60,7 @@ app.use('/addNewjobAdmin' , VerifyTokenMiddleware.adminJwt , addNewjobAdmin)
 app.use('/adminLogin' , adminLogin)
 app.use('/getAlluser' ,VerifyTokenMiddleware.adminJwt ,getAlluser )
 app.use('/editUserbyadmin' ,VerifyTokenMiddleware.adminJwt ,editUserbyadmin  )
-
+app.use('/delUserbyadmin' , VerifyTokenMiddleware.adminJwt , delUserbyadmin)
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
