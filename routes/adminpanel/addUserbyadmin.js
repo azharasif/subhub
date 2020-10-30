@@ -3,7 +3,7 @@ const express = require('express');
 const Joi = require('@hapi/joi');
 const router = express.Router();
 const functions = require('../../middleware/functions')
-const connection = require('../db');
+
 
 const schema = Joi.object().keys({
   fullname: Joi.string().required(),
