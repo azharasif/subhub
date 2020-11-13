@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
         let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      let user = await functions.runQuery(`select u.*  , si.* , j.*  from user u  left join  scheduleInterview  si on  si.userid = u.id    (selec) `);
-      res.send({ statusCode: 200, message: "Interview inserted" })
+      let data = await functions.runQuery(`select u.*  , si.* , j.*  from user u  left join  scheduleInterview  si on  si.userid = u.id left join jobs j on u.jobid = j.id  where u.id = ${req.body.userid} and j.id = ${req.body.jobid} `);
+      res.send({ statusCode: 200, data: data })
 
 
     } else {

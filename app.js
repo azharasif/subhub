@@ -34,6 +34,7 @@ const editJobbyadmin = require('./routes/adminpanel/editJobbyadmin')
 const assignJobtouser = require('./routes/adminpanel/assignjobtouser')
 const addInterview = require('./routes/scheduleInterview')
 const interviewlist = require('./routes/getInterviewList')
+
 var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -73,6 +74,7 @@ app.use('/editJobbyadmin' , VerifyTokenMiddleware.adminJwt ,editJobbyadmin)
 app.use('/assignJobtouser' , VerifyTokenMiddleware.adminJwt ,assignJobtouser)
 
 app.use('/addInterview' , VerifyTokenMiddleware.validJwt ,addInterview)
+app.use('/getInterviewlist' , VerifyTokenMiddleware.validJwt ,interviewlist)
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
