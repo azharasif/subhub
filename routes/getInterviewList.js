@@ -5,7 +5,6 @@ const router = express.Router();
 const functions = require('../middleware/functions')
 
 const userSchema = Joi.object().keys({
-  jobid :Joi.number().integer().required(),
   userid: Joi.number().integer().required(),
   issuperadmin: Joi.boolean()
 });
