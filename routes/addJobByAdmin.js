@@ -12,6 +12,7 @@ const userSchema = Joi.object().keys({
     price: Joi.number().integer().required(),
     lng: Joi.string().required(),
     lat: Joi.string().required(),
+    address:Joi.string().required(),
     issuperadmin: Joi.boolean()
 });
 router.post('/', async (req, res) => {
@@ -19,7 +20,7 @@ router.post('/', async (req, res) => {
         let validated = userSchema.validate(req.body, { abortEarly: false });
         if (!validated.error) {
             console.log(req.body)
-            var query = `insert into jobs  (postby  , subname , rating , distance ,price ,lng ,lat ) values("admin" ,  "${req.body.subname}"  ,${req.body.rating} , ${req.body.distance} , ${req.body.price} ,"${req.body.lng}" ,"${req.body.lat}"  )`
+            var query = `insert into jobs  (postby  , subname , rating , distance ,price ,lng ,lat , address) values("admin" ,  "${req.body.subname}"  ,${req.body.rating} , ${req.body.distance} , ${req.body.price} ,"${req.body.lng}" ,"${req.body.lat}" , ${req.body.address}  )`
            console.log(query)
             let user = await functions.runQuery(query);
             res.send({ statusCode: 200, message: "job added by admin" })

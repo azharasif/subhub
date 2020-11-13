@@ -14,6 +14,7 @@ const Schema = Joi.object().keys({
   price: Joi.number().integer().required().allow(""),
   lng: Joi.string().required().allow(""),
   lat: Joi.string().required().allow(""),
+  address:Joi.string().required().allow(""),
   issuperadmin: Joi.boolean()
 });
 router.post('/', async (req, res) => {
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
     let validation = Schema.validate(req.body, { abortEarly: false });
     
     if (!validation.error) {
-      let query = ` update jobs set postby = "admin" ,  subname = "${req.body.subname}" ,  rating = ${req.body.rating} , distance = ${req.body.distance} , price = ${req.body.price} ,  lng = "${req.body.lng}" , lat = "${req.body.lat}"  where id = ${req.body.jobid}  `;
+      let query = ` update jobs set postby = "admin" ,  subname = "${req.body.subname}" ,  rating = ${req.body.rating} , distance = ${req.body.distance} , price = ${req.body.price} ,  lng = "${req.body.lng}" , lat = "${req.body.lat}" , address = "${req.body.address}"   where id = ${req.body.jobid}  `;
       console.log(query)
       let result = await functions.runQuery(query)
       
