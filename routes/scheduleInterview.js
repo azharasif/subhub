@@ -15,8 +15,10 @@ router.post('/', async (req, res) => {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
         let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      let user = await functions.runQuery(`insert into scheduleInterview (userid , jobid , date ,isjobaccept  ) values (${req.body.userid}  , ${req.body.jobid}  , '${currentTime}' , ${req.body.isjobaccept} )`);
-      res.send({ statusCode: 200, message: "Interview inserted" })
+      let user = await functions.runQuery(`insert into scheduleInterview (userid , jobid , date ,isjobaccept  ) values (${req.body.userid}  , ${req.body.jobid}  , '${currentTime}' , ${req.body.isjobaccept} ) 
+      on duplicate key update    userid = values(userid) , jobid = values(jobid), date = values(date),
+      isjobaccept = values(isjobaccept)`);
+      res.send({ statusCode: 200, message: "Interview Scheduled" })
 
 
     } else {

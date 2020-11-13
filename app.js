@@ -75,7 +75,7 @@ app.use('/editJobbyadmin' , VerifyTokenMiddleware.adminJwt ,editJobbyadmin)
 app.use('/assignJobtouser' , VerifyTokenMiddleware.adminJwt ,assignJobtouser)
 
 app.use('/addInterview' , VerifyTokenMiddleware.validJwt ,addInterview)
-app.use('/getInterviewlist' , VerifyTokenMiddleware.validJwt ,interviewlist)
+app.use('/getInterviewlist' , VerifyTokenMiddleware.adminJwt ,interviewlist)
 app.use('/updateJobscheduled' , VerifyTokenMiddleware.adminJwt  ,updateJobscheduled )
 // error handler
 app.use(function (err, req, res, next) {
