@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     let validated = userSchema.validate(req.body, { abortEarly: false });
     if (!validated.error) {
         let currentTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-      let data = await functions.runQuery(`select si.*  , j.* , u.* from scheduleInterview si left join jobs j on si.jobid = j.id left join user u on u.id = si.userid  `);
+      let data = await functions.runQuery(`select  si.id as interviewid, si.*  , j.* , u.*  from scheduleInterview si left join jobs j on si.jobid = j.id left join user u on u.id = si.userid  `);
       res.send({ statusCode: 200, data: data })
 
 
